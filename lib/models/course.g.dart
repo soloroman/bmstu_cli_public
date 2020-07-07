@@ -8,7 +8,7 @@ part of 'course.dart';
 
 Course _$CourseFromJson(Map<String, dynamic> json) {
   return Course(
-    course: json['course'] as String,
+    number: json['number'] as String,
     groups: (json['groups'] as List)
         ?.map(
             (e) => e == null ? null : Group.fromJson(e as Map<String, dynamic>))
@@ -17,6 +17,6 @@ Course _$CourseFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$CourseToJson(Course instance) => <String, dynamic>{
-      'course': instance.course,
+      'number': instance.number,
       'groups': instance.groups?.map((e) => e?.toJson())?.toList(),
     };

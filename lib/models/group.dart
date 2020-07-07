@@ -9,6 +9,5 @@ class Group {
   String url;
 
   factory Group.fromJson(Map<String, dynamic> json) => _$GroupFromJson(json);
-
   Map<String, dynamic> toJson() => _$GroupToJson(this);
 }
