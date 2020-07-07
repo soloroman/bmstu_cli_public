@@ -3,7 +3,6 @@ import 'package:http/http.dart' as http;
 import 'package:html/parser.dart';
 import 'package:test_app/config.dart' as config;
 import 'package:test_app/models/index.dart';
-import 'package:test_app/models/time_table/time_table.dart';
 
 Future<Element> getHtmlGroups() async {
   final response = await http.Client().get(Uri.parse(config.url_groups));
@@ -29,22 +28,22 @@ Future<List<Element>> getHtmlTimeTable(url) async {
 
 void main(List<String> arguments) async {
 
-  var result = await getHtmlTimeTable('https://students.bmstu.ru/schedule/d2e47842-4aee-11e9-9c17-005056960017')
-  .then((elements) async {
-    var time_table = TimeTable();
-    time_table.htmlElements = elements;
-    await time_table.fetchChilds();
-    return time_table;
-  });
-  print(result.toJson());
-
-  // var response = await getHtmlGroups()
-  // .then((list_group) async {
-  //   final table = FacultyTable(htmlElement: list_group);
-  //   await table.fetchChild();
-  //   return table;
+  // var result = await getHtmlTimeTable('https://students.bmstu.ru/schedule/d2e47842-4aee-11e9-9c17-005056960017')
+  // .then((elements) async {
+  //   var time_table = TimeTable();
+  //   time_table.htmlElements = elements;
+  //   await time_table.fetchChilds();
+  //   return time_table;
   // });
-  // print(response.toJson());
+  // print(result.toJson());
+
+  var response = await getHtmlGroups()
+  .then((list_group) async {
+    final table = FacultyTable(htmlElement: list_group);
+    await table.fetchChild();
+    return table;
+  });
+  print(response.toJson());
 
   // final response = await http.Client().get(
   //   Uri.parse('https://students.bmstu.ru/profile'),
